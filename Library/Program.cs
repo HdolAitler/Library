@@ -1,10 +1,28 @@
+ midterm
 using library.Data;
 using Npgsql;
+
+using Npgsql;
+using library.Data;
+ master
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+// Database: read the connection string from User Secrets and create one shared data source.
+var connectionString = builder.Configuration.GetConnectionString("Library");
+if (string.IsNullOrWhiteSpace(connectionString))
+{
+    throw new InvalidOperationException("Connection string 'Library' is missing. Add it in Manage User Secrets.");
+}
+var dataSource = NpgsqlDataSource.Create(connectionString);
+builder.Services.AddSingleton(dataSource);
+// Repositories: one new object per web request.
+builder.Services.AddScoped<BookRepository>();
+builder.Services.AddScoped<MemberRepository>();
+
+
 
 // Database connection string & data source
 var connectionString = builder.Configuration.GetConnectionString("Library");
