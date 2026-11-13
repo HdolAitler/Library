@@ -16,10 +16,17 @@
                         Member ID: #@member.MemberId
                     </h6>
 
-                    <p class="card-text mb-4 text-truncate">
+                    <p class="card-text mb-2 text-truncate">
                         <strong>Email:</strong>
                         <span class="@(member.Email == null ? "text-muted italic" : "")">
                             @(member.Email ?? "—")
+                        </span>
+                    </p>
+
+                    <p class="card-text mb-4">
+                        <strong>Books out:</strong>
+                        <span class="badge rounded-pill text-bg-light border text-dark">
+                            @member.OpenLoans
                         </span>
                     </p>
 
@@ -40,5 +47,6 @@
         </div>
     }
 </div>
+
 
 
