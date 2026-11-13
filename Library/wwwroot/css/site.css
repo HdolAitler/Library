@@ -29,3 +29,200 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+/* ===== LIBRARY WEBSITE DESIGN ===== */
+
+:root {
+    --library-blue: #173b63;
+    --library-light: #edf4fb;
+    --library-accent: #3478b8;
+    --library-text: #263445;
+}
+
+body {
+    background-color: #f4f7fb;
+    color: var(--library-text);
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Page headings */
+h1 {
+    color: var(--library-blue);
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: var(--library-blue);
+    font-weight: 600;
+}
+
+/* Main cards */
+.library-card {
+    background: white;
+    border: 1px solid #e1e8f0;
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 22px;
+    box-shadow: 0 4px 14px rgba(25, 55, 85, 0.06);
+}
+
+/* Summary cards */
+.summary-card {
+    background: white;
+    border-left: 5px solid var(--library-accent);
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 3px 12px rgba(25, 55, 85, 0.06);
+    margin-bottom: 20px;
+}
+
+    .summary-card h3 {
+        color: var(--library-blue);
+        font-size: 25px;
+        font-weight: 700;
+        margin: 0;
+    }
+
+/* Tables */
+.table {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+    .table thead th {
+        background: var(--library-blue);
+        color: white;
+        padding: 15px;
+        border: none;
+    }
+
+    .table tbody td {
+        padding: 14px;
+        vertical-align: middle;
+    }
+
+    .table tbody tr:hover {
+        background: var(--library-light);
+    }
+
+/* Status badges */
+.status-badge {
+    display: inline-block;
+    padding: 7px 13px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.status-out {
+    background: #fff0c2;
+    color: #8a5a00;
+}
+
+.status-overdue {
+    background: #ffe0e0;
+    color: #b42318;
+}
+
+.status-returned {
+    background: #d9f5e5;
+    color: #187442;
+}
+
+/* Buttons */
+.btn-primary {
+    background: var(--library-blue);
+    border-color: var(--library-blue);
+    border-radius: 8px;
+    padding: 9px 17px;
+}
+
+    .btn-primary:hover {
+        background: #245785;
+        border-color: #245785;
+    }
+
+.btn-success,
+.btn-outline-success {
+    border-radius: 8px;
+}
+
+.btn-secondary,
+.btn-outline-primary {
+    border-radius: 8px;
+}
+
+/* Forms */
+.library-form {
+    background: white;
+    border: 1px solid #e1e8f0;
+    border-radius: 15px;
+    padding: 28px;
+    max-width: 650px;
+    box-shadow: 0 5px 18px rgba(25, 55, 85, 0.07);
+}
+
+.form-label {
+    color: var(--library-blue);
+    font-weight: 600;
+}
+
+.form-control,
+.form-select {
+    border: 1px solid #ccd7e3;
+    border-radius: 8px;
+    padding: 11px;
+}
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: var(--library-accent);
+        box-shadow: 0 0 0 3px rgba(52, 120, 184, 0.13);
+    }
+
+/* Validation messages */
+.text-danger,
+.field-validation-error {
+    color: #c62828 !important;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.validation-summary-errors {
+    background: #fff0f0;
+    color: #b42318;
+    border-left: 4px solid #d92d20;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 18px;
+}
+
+/* Delete warning */
+.alert-danger {
+    background: #fff0f0;
+    color: #a61b1b;
+    border: 1px solid #f5b8b8;
+    border-left: 5px solid #d92d20;
+    border-radius: 10px;
+    padding: 16px;
+    font-weight: 600;
+}
+
+/* Member details */
+.member-info {
+    background: var(--library-light);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+/* Empty loan message */
+.empty-message {
+    background: white;
+    border: 1px dashed #9bb5ce;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    color: #63758a;
+}

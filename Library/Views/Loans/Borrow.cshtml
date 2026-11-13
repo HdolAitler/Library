@@ -1,38 +1,75 @@
 ﻿@model BorrowForm
+
 @{
-    ViewData["Title"] = "Borrow a book";
+    ViewData["Title"] = "Borrow a Book";
 }
 
-<h1 class="mb-3">Borrow a book</h1>
+<div class="mb-4">
+    <h1>📖 Borrow a Book</h1>
+    <p class="text-muted">Complete the form below to record a new book loan.</p>
+</div>
 
-<form asp-action="Borrow" method="post" class="card card-body" style="max-width:36rem">
-    <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
+<form asp-action="Borrow" method="post" class="library-form">
 
-    <div class="mb-3">
-        <label asp-for="MemberId" class="form-label">Member</label>
-        <select asp-for="MemberId" asp-items="ViewBag.Members" class="form-select">
-            <option value="">(choose a member)</option>
+    <div asp-validation-summary="ModelOnly"
+         class="text-danger mb-3"></div>
+
+    <div class="mb-4">
+        <label asp-for="MemberId" class="form-label">
+            Select Member
+        </label>
+
+        <select asp-for="MemberId"
+                asp-items="ViewBag.Members"
+                class="form-select">
+            <option value="">Choose a member</option>
         </select>
-        <span asp-validation-for="MemberId" class="text-danger"></span>
+
+        <span asp-validation-for="MemberId"
+              class="text-danger"></span>
     </div>
 
-    <div class="mb-3">
-        <label asp-for="BookId" class="form-label">Book</label>
-        <select asp-for="BookId" asp-items="ViewBag.Books" class="form-select">
-            <option value="">(choose a book)</option>
+    <div class="mb-4">
+        <label asp-for="BookId" class="form-label">
+            Select Book
+        </label>
+
+        <select asp-for="BookId"
+                asp-items="ViewBag.Books"
+                class="form-select">
+            <option value="">Choose a book</option>
         </select>
-        <span asp-validation-for="BookId" class="text-danger"></span>
+
+        <span asp-validation-for="BookId"
+              class="text-danger"></span>
     </div>
 
-    <div class="mb-3">
-        <label asp-for="DaysAllowed" class="form-label">Days allowed</label>
-        <input asp-for="DaysAllowed" class="form-control" />
-        <span asp-validation-for="DaysAllowed" class="text-danger"></span>
+    <div class="mb-4">
+        <label asp-for="DaysAllowed" class="form-label">
+            Loan Duration (Days)
+        </label>
+
+        <input asp-for="DaysAllowed"
+               class="form-control" />
+
+        <span asp-validation-for="DaysAllowed"
+              class="text-danger"></span>
+
+        <small class="text-muted">
+            Minimum: 1 day | Maximum: 30 days | Default: 7 days
+        </small>
     </div>
 
-    <div>
-        <button type="submit" class="btn btn-primary">Borrow</button>
-        <a asp-action="Index" class="btn btn-link">Cancel</a>
+    <hr />
+
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">
+            ✓ Confirm Borrow
+        </button>
+
+        <a asp-action="Index" class="btn btn-outline-secondary">
+            Cancel
+        </a>
     </div>
 </form>
 

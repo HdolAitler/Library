@@ -1,39 +1,61 @@
-﻿@model MemberDetails
-@{
-    ViewData["Title"] = Model.Member.FullName;
-}
-
-<h1 class="mb-1">@Model.Member.FullName</h1>
-<p class="text-muted">@Model.Member.MemberType · @(Model.Member.Email ?? "no email")</p>
-
-<h2 class="h5 mt-4">Loans</h2>
-@if (Model.Loans.Count == 0)
+﻿@if (ViewBag.Error != null)
 {
-    <p>This member has never borrowed a book.</p>
-}
-else
-{
-    <table class="table table-striped align-middle">
-        <thead class="table-dark">
-            <tr>
-                <th>Book</th>
-                <th>Loaned</th>
-                <th>Returned</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var loan in Model.Loans)
-            {
-                <tr>
-                    <td>@loan.BookTitle</td>
-                    <td>@(loan.LoanedOn.ToString("yyyy-MM-dd"))</td>
-                    <td>@(loan.ReturnedOn?.ToString("yyyy-MM-dd") ?? "—")</td>
-                    <td>@loan.Status</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <div class="alert alert-danger">
+        ⚠️ @ViewBag.Error
+    </div>
 }
 
-<a asp-action="Index" class="btn btn-link px-0">Back to members</a>
+@* Redesigned Member List: Table replaced with a clean, responsive Bootstrap Card Grid *@
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    @foreach (var member in Model)
+    {
+        <div class="col">
+            <div class="card h-100 shadow-sm border-start border-primary border-4">
+                <div class="card-body d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <h5 class="card-title text-dark fw-bold mb-0">@member.FullName</h5>
+                        <span class="badge @(member.MemberType == "Faculty" ? "text-bg-warning" : member.MemberType == "Student" ? "text-bg-info" : "text-bg-secondary")">
+                            @member.MemberType
+                        </span>
+                    </div>
+
+                    <h6 class="card-subtitle mb-3 text-muted small">
+                        Member ID: #@member.MemberId
+                    </h6>
+
+                    <p class="card-text mb-2 text-truncate">
+                        <strong>Email:</strong>
+                        <span class="@(member.Email == null ? "text-muted italic" : "")">
+                            @(member.Email ?? "—")
+                        </span>
+                    </p>
+
+                    <p class="card-text mb-4">
+                        <strong>Books out:</strong>
+                        <span class="badge rounded-pill text-bg-light border text-dark">
+                            @member.OpenLoans
+                        </span>
+                    </p>
+
+                    <!-- Action buttons anchored beautifully at the bottom of the card -->
+                    <div class="mt-auto d-flex gap-2 justify-content-end border-top pt-3">
+                        <a asp-action="Details" asp-route-id="@member.MemberId" class="btn btn-sm btn-outline-primary px-3">
+                            Loans
+                        </a>
+                        <a asp-action="Edit" asp-route-id="@member.MemberId" class="btn btn-sm btn-outline-secondary px-3">
+                            Edit
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@member.MemberId" class="btn btn-sm btn-outline-danger px-3">
+                            Delete
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+<a asp-action="Index" class="btn btn-outline-primary">
+    ← Back to Members
+</a>
