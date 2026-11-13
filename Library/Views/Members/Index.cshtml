@@ -25,6 +25,9 @@
 
                     <!-- Action buttons anchored beautifully at the bottom of the card -->
                     <div class="mt-auto d-flex gap-2 justify-content-end border-top pt-3">
+                        <a asp-action="Details" asp-route-id="@member.MemberId" class="btn btn-sm btn-outline-primary px-3">
+                            Loans
+                        </a>
                         <a asp-action="Edit" asp-route-id="@member.MemberId" class="btn btn-sm btn-outline-secondary px-3">
                             Edit
                         </a>
@@ -37,4 +40,5 @@
         </div>
     }
 </div>
+
 
